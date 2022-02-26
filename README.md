@@ -19,7 +19,7 @@
 - ETH
 
 - 수수료 = gas(21000) * gasPrice(1gawei == 10**9wei) = 21000000000000wei = 0.000021ETH
-참고) 1ETH = 10 ** 18wei
+#### 참고) 1ETH = 10 ** 18wei
 
 #### dapp campus
 #### URL : https://www.youtube.com/watch?v=Ud3_OrxNPDg
