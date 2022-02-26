@@ -1,0 +1,81 @@
+contract -> 모든 smart contract
+migrations -> 배포 관련 스크립트
+test -> test 코드 (ex.단위 test, integration test)
+
+    - test에는 solidity에서 짤 수 있는 코드는 크게 2가지 
+        ＊ solidity 자체 랭귀지를 사용해서 만드는 test
+        ＊ js를 통해서 외부에서 사용하는 인테그레이션(integration) 형식 test
+
+Lottery.sol을 compile 하니까 bulid folder가 생성됨
+    -> bulid folder 안에는 compile한 결과가 나옴
+    -> Lottery.json 안에 bytecode는 실제로 블록체인 네트워크에 배포되는 bytecode + 여러가지 meda data
+
+truffle-confing에서는 truffle 환경에서 어떤 세팅을 사용할 건지에 대한 설정을 할 수 있음
+
+Dapp 서비스 설계
+
+1. 지갑 관리
+    -> 가장 중요한 구조
+
+2. 아키텍쳐
+    1) 기존 서비스는 동일 (서버 클라이언트 구조로 진행)
+    2) + smart contract -> 스마트 컨트랙트만 사용 시, 모든 데이터를 관리해야하기 때문에 유연하지 x
+    3) + server -> 중요한 데이터는 스마트 컨트랙트에서 덜 중요한 데이터는 서버에서 관리 -> 서비스를 다채롭게 구성
+
+3. code
+    1) 코드를 실행하는데 돈이 든다 (DDoS 공격을 막기 위해) -> 어떻게 해야 최소의 비용이 들지 생각해봐야 함
+    2) 권환 관리 (logic이 복잡해질 때)
+    3) 비지니스 로직 업데이트 (초기 설계 이후 정해진 상태로 유지하기 어려움)
+    4) 데이터 마이그레이션
+
+4. 운영
+    1) public
+    2) private
+
+Lottery Rules
+
+1. 3번째 블록해쉬의 첫 두 글자 맞추기 
+    1) 유저가 던진 트랜젝션이 들어가는 블록 +3의 블록해쉬와 값을 비교
+
+2. 팟 머니
+    1) 결과가 나왔을 때만 유저가 보낸 돈을 팟 머니에 쌓기
+    2) 여러 명이 맞추었을 때는 가장 먼저 맞춘 사람이 팟 머니를 가져감
+    3) 두 글자 중 하나만 맞추었을 때는 보낸 돈을 돌려줌 -> 0.005ETH = 10**15wei
+    4) 결과값을 검증할 수 없을 때에는 보낸 돈을 돌려줌
+
+필요한 것
+
+1. 블록해쉬의 글자를 맞춤 -> 블록해쉬의 숫자를 저장
+2. 유저가 던진 트랜젝셕 -> 해당 유저의 주소를 저장
+3. 몇 번째 블록에 배팅하는지 (블록 숫자)
+
+Ethereum 수수료
+- gas(Limit)
+- gasPrice
+- ETH
+- 수수료 = gas(21000) * gasPrice(1gawei == 10**9wei) = 21000000000000wei = 0.000021ETH
+- 1ETH = 10 ** 18wei
+
+Gas 계산
+- 32byte 새로 저장 == 20000gas
+- 32byte 기존 변수에 있는 값을 바꿀 때 == 5000gas
+
+(기존 변수를 초기화해서 더 쓰지 않을 때 -> 10000gas return)
+
+Bet
+- 90688 -> 75688
+- 기본 21000gas  + 사용 60000gas = 810000gas -> event(5000)
+
+Dapp 데이터 관리
+
+- Read
+    - smart contract를 직접 call(ex. getPot), batch read call
+    - event log를 읽는 방법
+        - http(polling 직접 물어보는 것)
+        - websocket
+
+1. init와 동시에 past event를 가져온다
+2. ws(websocket)로 geth 또는 infura와 연결한다
+3. ws로 원하는 이벤트를 sunscribe한다
+    - ws을 사용할 수 없다면 롱 폴링(3초에 한 번씩 물어봄)을 이용한다.
+4. 돈이 크게 걸려있는 서비스 -> 블락 컨펌 확인
