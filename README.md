@@ -1,6 +1,10 @@
 # Lottery Dapp 개발
 ## Block Hash를 맞추는 Lottery Game
 
+#### dapp campus
+#### URL : https://www.youtube.com/watch?v=Ud3_OrxNPDg
+
+
 ### Lottery Rules
 
 - 3번째 블록해쉬의 첫 두 글자 맞추기 
@@ -21,9 +25,10 @@
 - 수수료 = gas(21000) * gasPrice(1gawei == 10**9wei) = 21000000000000wei = 0.000021ETH
 #### 참고) 1ETH = 10 ** 18wei
 
-#### dapp campus
-#### URL : https://www.youtube.com/watch?v=Ud3_OrxNPDg
+### Gas 계산
 
+- 32byte 새로 저장 == 20000gas
+- 32byte 기존 변수에 있는 값을 바꿀 때 == 5000gas
 
 
 
