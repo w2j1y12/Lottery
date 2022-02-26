@@ -35,6 +35,16 @@
 ## Lottery-smart-contract
 
 ### contracts
+- 모든 smart contract
+- 
+#### Migration.sol
+
 ### migrations
+- 배포 관련 script
+### test
+- test codde
+- solidity에서 시용 가능한 코드는 크게 2가지
+  - solidity 자체 랭귀지를 사용해서 만드는 test
+  - js를 통해서 외부에서 사용하는 integration 형식 test
 
 ## lottery-react-app
