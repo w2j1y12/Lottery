@@ -56,10 +56,10 @@
   - smart contract의 버전 관리
   - 몇 번 째 deployment script응 사용했는지 알 수 있음 
 - Lottery.sol
-  - 
 
 ### migrations
 - 배포 관련 script
+
 ### test
 - test codde
 - solidity에서 시용 가능한 코드는 크게 2가지
@@ -104,6 +104,15 @@ initWeb3 = async () => {
 
 ## 결과
 ![KakaoTalk_20220227_000404580](https://user-images.githubusercontent.com/62472117/155848176-62e46154-2ec7-43d4-8ba9-6f381cb6cab5.jpg)
-![KakaoTalk_20220227_000404580_01](https://user-images.githubusercontent.com/62472117/155848191-cf0833e8-7458-4aa6-8a20-61c985307c9e.jpg)
+![KakaoTalk_20220227_010407698](https://user-images.githubusercontent.com/62472117/155850140-09a12261-b55f-4b5f-b509-f4fd090f9b9f.jpg)
 
-
+- current Pot : Fail 시 지불해야할 Pot이 쌓임
+- Address : Bet한 주소
+- Challenge : Bet한 값
+- Answer : 정답
+  - Not Revealed : Hash +3의 결과를 맞추기 때문에 아직 결과가 반환되지 않음
+- Pot : 획득한 Pot Money
+- Status : 결과
+  - WIN
+  - FAIL
+  - Not Revealed
