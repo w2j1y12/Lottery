@@ -26,9 +26,11 @@
 #### 참고) 1ETH = 10 ** 18wei
 
 ### Gas 계산
+- 수수료가 높을 수록 transaction 잘 됨
 
 - 32byte 새로 저장 == 20000gas
 - 32byte 기존 변수에 있는 값을 바꿀 때 == 5000gas
+- 기존 변수를 초기화해서 더 쓰지 않을 때 -> 10000gas return
 
 ### Dapp 서비스 설계
 - 지갑 관리
@@ -65,3 +67,38 @@
   - js를 통해서 외부에서 사용하는 integration 형식 test
 
 ## lottery-react-app
+### App.js
+
+- web3와 Metamask 연동
+- 매년 업데이트되므로, 확인해야 함
+'''
+initWeb3 = async () => {
+    if (window.ethereum) {
+      // const web3 = require("Web3");
+      console.log('Recent mode');
+      this.web3 = new Web3(window.ethereum);
+      try {
+        await window.ethereum.request({method: 'eth_requestAccounts'});
+        // window.web3 = new Web3(window.ethereum);
+        // return true;
+      }
+      catch (error) {
+        console.log(`User denied account access error: ${error}`);
+        // return false;
+      }
+      
+    }
+    else {
+      console.log('Non-Ethereum broswer detected. You should consider trying MetaMask');
+    }
+
+    let accounts = await this.web3.eth.getAccounts();
+    this.account = accounts[0];
+
+    this.lotteryContract = new this.web3.eth.Contract(lotteryABI, lotteryAddress); // 새로운 객체
+    
+  }
+'''
+#### 참고)https://medium.com/valist/how-to-connect-web3-js-to-metamask-in-2020-fee2b2edf58a
+
+
