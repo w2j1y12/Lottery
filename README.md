@@ -30,14 +30,31 @@
 - 32byte 새로 저장 == 20000gas
 - 32byte 기존 변수에 있는 값을 바꿀 때 == 5000gas
 
-
-
+### Dapp 서비스 설계
+- 지갑 관리
+  - 가장 중요
+- 아키텍쳐
+  - 기존 서비스는 동일 (서버 클라이언트 구조로 진행)
+  - + smart contract -> 스마트 컨트랙트만 사용 시, 모든 데이터를 관리해야하기 때문에 유연하지 x
+  - + server -> 중요한 데이터는 스마트 컨트랙트에서 덜 중요한 데이터는 서버에서 관리 -> 서비스를 다채롭게 구성
+- code
+  - 코드를 실행하는데 돈이 든다 (DDoS 공격을 막기 위해) -> 어떻게 해야 최소의 비용이 들지 생각해봐야 함
+  - 권한 관리 (logic이 복잡해질 때)
+  - 비지니스 로직 업데이트 (초기 설계 이후 정해진 상태로 유지하기 어려움)
+  - 데이터 마이그레이션
+- 운영
+  - public 
+  - private
+  
 ## Lottery-smart-contract
 
 ### contracts
 - 모든 smart contract
-- 
-#### Migration.sol
+- Migration.sol
+  - smart contract의 버전 관리
+  - 몇 번 째 deployment script응 사용했는지 알 수 있음 
+- Lottery.sol
+  - 
 
 ### migrations
 - 배포 관련 script
