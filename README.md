@@ -71,7 +71,7 @@
 
 - web3와 Metamask 연동
 - 매년 업데이트되므로, 확인해야 함
-'''
+```
 initWeb3 = async () => {
     if (window.ethereum) {
       // const web3 = require("Web3");
@@ -98,7 +98,7 @@ initWeb3 = async () => {
     this.lotteryContract = new this.web3.eth.Contract(lotteryABI, lotteryAddress); // 새로운 객체
     
   }
-'''
+```
 #### 참고)https://medium.com/valist/how-to-connect-web3-js-to-metamask-in-2020-fee2b2edf58a
 
 
