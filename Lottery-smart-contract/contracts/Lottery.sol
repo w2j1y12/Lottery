@@ -263,7 +263,8 @@ contract Lottery {
         view
         returns (bytes32 answer)
     {
-        return mode ? blockhash(answerBlockNumber) : answerForTest;
+        // return mode ? blockhash(answerBlockNumber) : answerForTest;
+        return blockhash(answerBlockNumber);
     }
 
     /*
