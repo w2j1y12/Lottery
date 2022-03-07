@@ -167,36 +167,36 @@ class App extends Component {
   // History table 
   // index(최신순 내림파순) address(어떤 주소가 배팅) challenge(배팅 글자) answer(정답o:보여줌) pot(팟머니 가져오면:보여줌) status(fail,win) answerBlcokNumber(어떤 블록에 배팅했는지) 
 
-  onClickCard = (_Character) => {
-    this.setState({
-      challenges: [this.state.challenges[1], _Character]
-    })
-  }
-  getCard = (_Character, _cardStyle) => {
-    let _card ='';
-    if (_Character === 'A') {
-      _card = '🂡';
-    }
-    if (_Character === 'B') {
-      _card = '🂱'; 
-    }
-    if (_Character === 'C') {
-      _card = '🃁';
-    }
-    if (_Character === '0') {
-      _card = '🃑';
-    }
+  // onClickCard = (_Character) => {
+  //   this.setState({
+  //     challenges: [this.state.challenges[1], _Character]
+  //   })
+  // }
+  // getCard = (_Character, _cardStyle) => {
+  //   let _card ='';
+  //   if (_Character === 'A') {
+  //     _card = '🂡';
+  //   }
+  //   if (_Character === 'B') {
+  //     _card = '🂱'; 
+  //   }
+  //   if (_Character === 'C') {
+  //     _card = '🃁';
+  //   }
+  //   if (_Character === '0') {
+  //     _card = '🃑';
+  //   }
 
-    // return (
-    //   <button className={_cardStyle} onClick = {()=> {this.onClickCard(_Character)}}>
-    //     <div className = "card-body text-center">
-    //       <p className="card-text"></p>
-    //       <p className="card-text text-center" style={{fontSize:300}}>{_card}</p>
-    //       <p className="card-text"></p>
-    //     </div>
-    //   </button>    
-    // )
-  };
+  //   return (
+  //     <button className={_cardStyle} onClick = {()=> {this.onClickCard(_Character)}}>
+  //       <div className = "card-body text-center">
+  //         <p className="card-text"></p>
+  //         <p className="card-text text-center" style={{fontSize:300}}>{_card}</p>
+  //         <p className="card-text"></p>
+  //       </div>
+  //     </button>    
+  //   )
+  // };
 
   onChange = input => {
     this.setState({ input });
